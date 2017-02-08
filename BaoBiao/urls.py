@@ -16,10 +16,11 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 
-from one.views import to_index
+from one.views import to_index, to_login
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^index/$', to_index, name='index'),
+    url(r'^login/$', to_login, name='login'),
 ]
 
