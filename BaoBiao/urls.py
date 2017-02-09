@@ -16,12 +16,13 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 
-from one.views import to_index, to_login, to_message
+from one.views import to_index, to_login, to_message, center_detail
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^index/$', to_index, name='index'),
-    url(r'^to_message/$', to_message, name='to_message'),
+    url(r'^message/$', to_message, name='to_message'),
+    url(r'^center_detail/$', center_detail, name='center_detail'),
     url(r'^login/$', to_login, name='login'),
 ]
 

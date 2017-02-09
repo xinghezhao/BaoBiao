@@ -1,6 +1,7 @@
+import json
+import datetime
 from django.shortcuts import render
 from django.http import HttpResponse #指定返回给用户的类型
-import json
 from itertools import zip_longest
 
 
@@ -20,6 +21,8 @@ def to_index(request):
             center_mobile = request.POST.get('center_mobile', '')
             sscx_select = request.POST.get('sscx_select', '')
             start_time = request.POST.get('start_time', '')
+            start_time = datetime.datetime.strptime(start_time, '%Y-%m-%d %H:%M:%S')
+
 
             user_message = UserMessage()
             user_message.center_number = center_number
@@ -47,10 +50,11 @@ def to_message(request):
                 item = {
                     'id': msg.id,
                     'model_number': msg.center_number,
+                    'model_cname': msg.center_mc,
                     'model_name': msg.center_pr,
                     'model_phone': msg.center_mobile,
                     'model_address':msg.address,
-                    'model_time':msg.start_time
+                    'model_time':msg.start_time.strftime('%Y-%m-%d %H:%M:%S')
                 }
                 data_list.append(item)
                 print(data_list)
@@ -58,6 +62,30 @@ def to_message(request):
 
 
         return HttpResponse(json.dumps(data_list), content_type="application/json")
+
+
+
+
+def center_detail(request):
+    if request.is_ajax():
+        if request.method == 'POST':
+            ID = request.POST.get('id', '')
+            msg = UserMessage.objects.get(id = ID)
+
+
+            item = {
+                'id': msg.id,
+                'model_number': msg.center_number,
+                'model_cname': msg.center_mc,
+                'model_name': msg.center_pr,
+                'model_phone': msg.center_mobile,
+                'model_address': msg.address,
+                'model_time': msg.start_time.strftime('%Y-%m-%d %H:%M:%S')
+            }
+
+        return HttpResponse(json.dumps(item), content_type="application/json")
+
+
 
 
 

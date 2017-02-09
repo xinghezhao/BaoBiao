@@ -125,7 +125,7 @@
                         <th data-field="state" data-radio="true"></th>
                         <th data-field="id">ID</th>
                         <th data-field="model_number">中心编号</th>
-{#                        <th data-field="model_number">中心名称</th>#}
+                        <th data-field="model_cname">中心名称</th>
                         <th data-field="model_name">联系人姓名</th>
                         <th data-field="model_phone">联系电话</th>
                         <th data-field="model_address">所在地点</th>
@@ -163,7 +163,7 @@
                                     <div class="form-group">
                                         <label for="inputPassword"  class="col-sm-2 control-label">中心名称</label>
                                         <div class="col-sm-10">
-                                            <input type="text" id = 'center_mc' name = 'cneter_mc' class="form-control"
+                                            <input type="text" id = 'center_mc' name = 'center_mc' class="form-control"
                                                    placeholder="请输入中心名称">
                                         </div>
                                     </div>
@@ -283,7 +283,6 @@ $(function() {
 
             }
         });
-
         return false; //<---- move it here
     });
 
@@ -351,7 +350,23 @@ $(function() {
         pageSize: 5,
         showPaginationSwitch: 'true', //是否显示 数据条数选择框
         onClickRow:function(row, $element, field){
-            alert(row.id);
+        $('#myModal').modal('show')
+        $.ajax({
+                cache: false,
+                type: "POST",
+                url:{% url 'center_detail' %},
+                data: {'id': row.id},
+                async:true,
+                beforeSend:function(xhr, settings){
+                    xhr.setRequestHeader("X-CSRFToken", "{{ csrf_token }}");
+                },
+                success: function(data){
+
+                    console.log(data)
+                }
+            });
+
+            return false; //<---- move it here
         }
     });
 
