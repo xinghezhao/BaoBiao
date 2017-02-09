@@ -155,28 +155,28 @@
                                     <div class="form-group">
                                         <label class="col-sm-2 control-label">中心编号</label>
                                         <div class="col-sm-10">
-                                            <input type="text" class="form-control"
+                                            <input type="text" id = 'center_number' name = 'center_number' class="form-control"
                                                    placeholder="请输入中心编号">
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="inputPassword" class="col-sm-2 control-label">中心名称</label>
+                                        <label for="inputPassword"  class="col-sm-2 control-label">中心名称</label>
                                         <div class="col-sm-10">
-                                            <input type="text" class="form-control"
+                                            <input type="text" id = 'center_mc' name = 'cneter_mc' class="form-control"
                                                    placeholder="请输入中心名称">
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label for="inputPassword" class="col-sm-2 control-label">联系人</label>
                                         <div class="col-sm-10">
-                                            <input type="text" class="form-control"
+                                            <input type="text" id = 'center_pr' name = 'center_pr' class="form-control"
                                                    placeholder="请输入联系人">
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label for="inputPassword" class="col-sm-2 control-label">电话</label>
                                         <div class="col-sm-10">
-                                            <input type="text" class="form-control"
+                                            <input type="text" id = 'center_mobile' name = 'center_mobile' class="form-control"
                                                    placeholder="请输入联系电话">
                                         </div>
                                     </div>
@@ -185,16 +185,16 @@
                                         <div class="col-sm-10">
                                             <select class="sscx_select" id = "sscx_select" >
                                                 <option value="all_messages">所在地址</option>
-                                                <option value ="defraud_messages">北京</option>
-                                                <option value ="safety_messages">天津</option>
-                                                <option value="rubblish_messages">上海</option>
+                                                <option value ="beijing">北京</option>
+                                                <option value ="tianjing">天津</option>
+                                                <option value="shanghai">上海</option>
                                             </select>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label for="inputPassword" class="col-sm-2 control-label">开始日期</label>
                                         <div class="col-sm-10">
-                                             <input style="height: 40px;"  type="text" id = 'start_time' class="form-control nav_time laydate-icon" placeholder="请选择开始时间">
+                                             <input style="height: 40px;"  type="text" id = 'start_time' name = 'start_time' class="form-control nav_time laydate-icon" placeholder="请选择开始时间">
                                         </div>
                                     </div>
                                 </form>
@@ -248,7 +248,31 @@
 <script>
 $(function() {
     $('#go_submit').click(function(){
-        alert(23);
+        //alert($('#center_number').val()+$('#center_mc').val()+$('#center_pr').val()+$('#center_mobile').val());
+        //alert($('#sscx_select option:selected').text() + $('#start_time').val() )
+        $.ajax({
+             cache: false,
+             type: "POST",
+             url:{% url 'index' %},
+             data: {
+                    'center_number': $('#center_number').val(), //编号
+                    'center_mc': $('#center_mc').val(), //名称
+                    'center_pr': $('#center_pr').val(),//联系人
+                    'center_mobile': $('#center_mobile').val(),//电话
+                    'sscx_select': $('#sscx_select').val(),//城市
+                    'start_time': $('#start_time').val()//时间
+
+                    },
+             async:true,
+            beforeSend:function(xhr, settings){
+                xhr.setRequestHeader("X-CSRFToken", "{{ csrf_token }}");
+            },
+            success: function(data){
+                 console.log(data.length);
+
+            }
+        });
+        return false; //<---- move it here
     });
 
         // 设备列表页表格开始
