@@ -123,16 +123,16 @@
                     <tr>
                         <th data-field="state" data-radio="true"></th>
                         <th data-field="id">ID</th>
-                        <th data-field="model_name">中心编号</th>
-                        <th data-field="model_number">中心名称</th>
-                        <th data-field="model_number">联系人姓名</th>
-                        <th data-field="model_number">联系电话</th>
-                        <th data-field="model_number">所在地点</th>
-                        <th data-field="model_number">计划启动时间</th>
-                        <th data-field="model_number">创建人</th>
-                        <th data-field="model_number">创建时间</th>
-                        <th data-field="model_number">更新人</th>
-                        <th data-field="model_number">更新时间</th>
+                        <th data-field="model_number">中心编号</th>
+{#                        <th data-field="model_number">中心名称</th>#}
+                        <th data-field="model_name">联系人姓名</th>
+                        <th data-field="model_phone">联系电话</th>
+                        <th data-field="model_address">所在地点</th>
+                        <th data-field="model_time">计划启动时间</th>
+{#                        <th data-field="model_number">创建人</th>#}
+{#                        <th data-field="model_number">创建时间</th>#}
+{#                        <th data-field="model_number">更新人</th>#}
+{#                        <th data-field="model_number">更新时间</th>#}
                     </tr>
                 </thead>
             </table>
@@ -248,6 +248,7 @@
 <script>
 $(function() {
     $('#go_submit').click(function(){
+        window.location.reload();  //刷新界面
         $('#myModal').modal('hide')
 
         //alert($('#center_number').val()+$('#center_mc').val()+$('#center_pr').val()+$('#center_mobile').val());
@@ -287,37 +288,36 @@ $(function() {
 
 
 
-
-    $('#go_submit').click(function(){
-        $('#myModal').modal('hide')
+    window.onload=function() {  //当页面刷新执行事件
         $.ajax({
-             cache: false,
-             type: "POST",
-             url:{% url 'to_message' %},
-             data: {
-                    'center_number': $('#center_number').val(), //编号
-                    'center_mc': $('#center_mc').val(), //名称
-                    'center_pr': $('#center_pr').val(),//联系人
-                    'center_mobile': $('#center_mobile').val(),//电话
-                    'sscx_select': $('#sscx_select').val(),//城市
-                    'start_time': $('#start_time').val()//时间
+         cache: false,
+         type: "POST",
+         url:{% url 'to_message' %},
+         data: {
+                'center_number': $('#center_number').val(), //编号
+                'center_mc': $('#center_mc').val(), //名称
+                'center_pr': $('#center_pr').val(),//联系人
+                'center_mobile': $('#center_mobile').val(),//电话
+                'sscx_select': $('#sscx_select').val(),//城市
+                'start_time': $('#start_time').val()//时间
 
-                    },
-             async:true,
-            beforeSend:function(xhr, settings){
-                xhr.setRequestHeader("X-CSRFToken", "{{ csrf_token }}");
-            },
-            success: function(data){
+                },
+         async:true,
+        beforeSend:function(xhr, settings){
+            xhr.setRequestHeader("X-CSRFToken", "{{ csrf_token }}");
+        },
+        success: function(data){
 
-                console.log(data);
-                console.log(data[0][0]);
-                $('#list_table').bootstrapTable('load', data);
+            console.log(data);
+            console.log(data[0][0]);
+            $('#list_table').bootstrapTable('load', data);
 
-            }
-        });
-
-        return false; //<---- move it here
+        }
     });
+
+    return false; //<---- move it here
+}
+
 
 
 
@@ -346,6 +346,9 @@ $(function() {
         toolbar: '#toolbar',  //一个jQuery 选择器，指明自定义的toolbar 例如:#toolbar,
         radio: 'true', //开启单选按钮
         pageSize: 5,
+        onClickRow:function(row, $element, field){
+            alert(row.id);
+        }
     });
 
 });

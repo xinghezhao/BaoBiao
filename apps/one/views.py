@@ -42,36 +42,24 @@ def to_message(request):
 
             all_messages = UserMessage.objects.all()
 
-            a_Number = []
-            for message in all_messages:
-                a_Number.append(message.center_number)
-            a_Person = []
-            for message in all_messages:
-                a_Person.append(message.center_pr)
-            a_Mobile = []
-            for message in all_messages:
-                a_Mobile.append(message.center_mobile)
-            a_Address = []
-            for message in all_messages:
-                a_Address.append(message.address)
-            a_Time = []
-            for message in all_messages:
-                a_Time.append(message.start_time)
-
-            for i in zip_longest(a_Number,a_Person,a_Mobile,a_Address,a_Time):
-                    print (i)
-
-            # All = [
-            #     a_Number,
-            #     a_Person,
-            #     a_Mobile,
-            #     a_Address,
-            #     a_Time
-            # ]
+            data_list = list()
+            for msg in all_messages:
+                item = {
+                    'id': msg.id,
+                    'model_number': msg.center_number,
+                    'model_name': msg.center_pr,
+                    'model_phone': msg.center_mobile,
+                    'model_address':msg.address,
+                    'model_time':msg.start_time
+                }
+                data_list.append(item)
+                print(data_list)
 
 
 
-    return HttpResponse(json.dumps(All), content_type="application/json")
+        return HttpResponse(json.dumps(data_list), content_type="application/json")
+
+
 
 
 
