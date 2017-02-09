@@ -248,8 +248,16 @@
 <script>
 $(function() {
     $('#go_submit').click(function(){
+        $('#myModal').modal('hide')
+
         //alert($('#center_number').val()+$('#center_mc').val()+$('#center_pr').val()+$('#center_mobile').val());
         //alert($('#sscx_select option:selected').text() + $('#start_time').val() )
+        //$('#center_number').empty();//编号
+        //$('#center_mc').empty();//名称
+        //$('#center_pr').empty();//联系人
+        //$('#center_mobile').empty();//电话
+        //$('#sscx_select').empty();//城市
+        //$('#start_time').empty();//时间
         $.ajax({
              cache: false,
              type: "POST",
@@ -268,12 +276,59 @@ $(function() {
                 xhr.setRequestHeader("X-CSRFToken", "{{ csrf_token }}");
             },
             success: function(data){
-                 console.log(data.length);
+
+                console.log(data);
 
             }
         });
+
         return false; //<---- move it here
     });
+
+
+
+
+    $('#go_submit').click(function(){
+        $('#myModal').modal('hide')
+        $.ajax({
+             cache: false,
+             type: "POST",
+             url:{% url 'to_message' %},
+             data: {
+                    'center_number': $('#center_number').val(), //编号
+                    'center_mc': $('#center_mc').val(), //名称
+                    'center_pr': $('#center_pr').val(),//联系人
+                    'center_mobile': $('#center_mobile').val(),//电话
+                    'sscx_select': $('#sscx_select').val(),//城市
+                    'start_time': $('#start_time').val()//时间
+
+                    },
+             async:true,
+            beforeSend:function(xhr, settings){
+                xhr.setRequestHeader("X-CSRFToken", "{{ csrf_token }}");
+            },
+            success: function(data){
+
+                console.log(data);
+                console.log(data[0][0]);
+                $('#list_table').bootstrapTable('load', data);
+
+            }
+        });
+
+        return false; //<---- move it here
+    });
+
+
+
+
+
+
+
+
+
+
+
 
         // 设备列表页表格开始
     $('#list_table').bootstrapTable({
