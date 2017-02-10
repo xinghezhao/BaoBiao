@@ -294,31 +294,20 @@ $(function() {
                 },
          async:true,
         beforeSend:function(xhr, settings){
-            xhr.setRequestHeader("X-CSRFToken", "{{ csrf_token }}");
-        },
-        success: function(data){
+                xhr.setRequestHeader("X-CSRFToken", "{{ csrf_token }}");
+            },
+            success: function(data){
 
-            $('#list_table').bootstrapTable('load', data);
+                $('#list_table').bootstrapTable('load', data);
 
-        }
-    });
+            }
+        });
 
-    return false; //<---- move it here
-}
-
-
+        return false; //<---- move it here
+    }
 
 
-
-
-
-
-
-
-
-
-
-        // 设备列表页表格开始
+    //表格数据展示
     $('#list_table').bootstrapTable({
         url: 'data.json',
         method:'post',
@@ -359,6 +348,12 @@ $(function() {
             return false; //<---- move it here
         }
     });
+
+
+
+
+
+
 
 });
 </script>

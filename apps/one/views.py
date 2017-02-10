@@ -1,6 +1,7 @@
 import json
 import datetime
 from django.shortcuts import render
+from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponse #指定返回给用户的类型
 from itertools import zip_longest
 
@@ -89,4 +90,24 @@ def center_detail(request):
 
 
 def to_login(request):
+
     return render(request, 'login.html',{})
+
+
+
+def SignIn(request):
+    if request.is_ajax:
+        if request.method == 'POST':
+            user_name = request.POST.get('username','')
+            pass_word = request.POST.get('password','')
+
+            user = authenticate(username=user_name, password=pass_word)
+            if user is not None:
+                if user.is_active:
+                    login(request, user)
+
+                    return HttpResponse('{"status":"success"}', content_type='application/json')
+                else:
+                    return HttpResponse('{"status":"fail"}', content_type='application/json')
+            else:
+                return HttpResponse('{"status":"fail"}', content_type='application/json')
