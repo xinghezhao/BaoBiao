@@ -23,15 +23,17 @@ def to_index(request):
             start_time = request.POST.get('start_time', '')
             start_time = datetime.datetime.strptime(start_time, '%Y-%m-%d %H:%M:%S')
 
+            if not UserMessage.objects.filter(center_number=center_number,center_mc=center_mc,center_pr=center_pr,center_mobile=center_mobile,address=sscx_select,start_time=start_time):
 
-            user_message = UserMessage()
-            user_message.center_number = center_number
-            user_message.center_mc = center_mc
-            user_message.center_pr = center_pr
-            user_message.center_mobile = center_mobile
-            user_message.address = sscx_select
-            user_message.start_time = start_time
-            user_message.save()
+                user_message = UserMessage()
+
+                user_message.center_number = center_number
+                user_message.center_mc = center_mc
+                user_message.center_pr = center_pr
+                user_message.center_mobile = center_mobile
+                user_message.address = sscx_select
+                user_message.start_time = start_time
+                user_message.save()
 
     return render(request, 'index.html', {})
 
@@ -57,9 +59,6 @@ def to_message(request):
                     'model_time':msg.start_time.strftime('%Y-%m-%d %H:%M:%S')
                 }
                 data_list.append(item)
-                print(data_list)
-
-
 
         return HttpResponse(json.dumps(data_list), content_type="application/json")
 
@@ -84,8 +83,6 @@ def center_detail(request):
             }
 
         return HttpResponse(json.dumps(item), content_type="application/json")
-
-
 
 
 

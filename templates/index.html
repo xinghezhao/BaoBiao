@@ -120,7 +120,7 @@
             <!-- 表单开始 -->
             <table id="list_table">
                 <thead>
-                    <button id = "toolbar" data-toggle="modal" data-target="#myModal" class="btn btn-default add_add" type="button" name="refresh" title="刷新"><i class="glyphicon glyphicon-plus"></i></button>
+                    <button id = "toolbar" data-toggle="modal" data-target="#myModal" class="btn btn-default add_add" type="button" name="refresh" title="增加"><i class="glyphicon glyphicon-plus"></i></button>
                     <tr>
                         <th data-field="state" data-radio="true"></th>
                         <th data-field="id">ID</th>
@@ -186,9 +186,9 @@
                                         <div class="col-sm-10">
                                             <select class="sscx_select" id = "sscx_select" >
                                                 <option value="all_messages">所在地址</option>
-                                                <option value ="beijing">北京</option>
-                                                <option value ="tianjing">天津</option>
-                                                <option value="shanghai">上海</option>
+                                                <option value ="北京">北京</option>
+                                                <option value ="天津">天津</option>
+                                                <option value="上海">上海</option>
                                             </select>
                                         </div>
                                     </div>
@@ -229,10 +229,6 @@
     <script src="{% static 'js/plugins/layer/layer.min.js' %}"></script>
      <script src="{% static 'js/hplus.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/contabs.min.js' %}"></script>
-    <script src="{% static 'js/plugins/pace/pace.min.js' %}"></script>
-    <script type = "text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=GS0gGAVjvLofVs576BaPEb5fFa8ch7U5"></script>
-    <script type="text/javascript" src="http://api.map.baidu.com/library/DistanceTool/1.2/src/DistanceTool_min.js"></script> 
-    <!-- 测距 -->    
     <script src="{% static 'js/laydate/laydate.js' %}"></script>
     <script src = "{% static 'js/my_write.js' %}"></script>
 
@@ -248,18 +244,11 @@
 </body>
 <script>
 $(function() {
+
+    //提交增加事件
     $('#go_submit').click(function(){
         window.location.reload();  //刷新界面
         $('#myModal').modal('hide')
-
-        //alert($('#center_number').val()+$('#center_mc').val()+$('#center_pr').val()+$('#center_mobile').val());
-        //alert($('#sscx_select option:selected').text() + $('#start_time').val() )
-        //$('#center_number').empty();//编号
-        //$('#center_mc').empty();//名称
-        //$('#center_pr').empty();//联系人
-        //$('#center_mobile').empty();//电话
-        //$('#sscx_select').empty();//城市
-        //$('#start_time').empty();//时间
         $.ajax({
              cache: false,
              type: "POST",
@@ -309,8 +298,6 @@ $(function() {
         },
         success: function(data){
 
-            console.log(data);
-            console.log(data[0][0]);
             $('#list_table').bootstrapTable('load', data);
 
         }
@@ -336,7 +323,6 @@ $(function() {
         url: 'data.json',
         method:'post',
         striped: 'true', //是否显示隔行变色
-        toolbar: '#toolbar',
         cache: 'false', //是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
         pagination:'true', //是否显示分页（*）
         search: 'true',   //是否显示表格搜索，此搜索是客户端搜索，不会进服务端，所以，个人感觉意义不大
@@ -361,8 +347,12 @@ $(function() {
                     xhr.setRequestHeader("X-CSRFToken", "{{ csrf_token }}");
                 },
                 success: function(data){
-
-                    console.log(data)
+                    $('#center_number').val(data.model_number);
+                    $('#center_mc').val(data.model_cname);
+                    $('#center_pr').val(data.model_name);
+                    $('#center_mobile').val(data.model_phone);
+                    $('#sscx_select').val(data.model_address);
+                    $('#start_time').val(data.model_time)
                 }
             });
 
