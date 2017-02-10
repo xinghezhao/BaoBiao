@@ -51,8 +51,10 @@ def to_message(request):
 
             all_messages = UserMessage.objects.all()
 
+
             data_list = list()
             for msg in all_messages:
+                print(msg.creator.username)
                 item = {
                     'id': msg.id,
                     'model_number': msg.center_number,
@@ -60,6 +62,7 @@ def to_message(request):
                     'model_name': msg.center_pr,
                     'model_phone': msg.center_mobile,
                     'model_address':msg.address,
+                    'model_creater':msg.creator.username,
                     'model_time':msg.start_time.strftime('%Y-%m-%d %H:%M:%S')
                 }
                 data_list.append(item)
