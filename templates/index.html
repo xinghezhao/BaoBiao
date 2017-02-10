@@ -254,6 +254,7 @@ $(function() {
              type: "POST",
              url:{% url 'index' %},
              data: {
+                    'id':Qj_Id, //每行id
                     'center_number': $('#center_number').val(), //编号
                     'center_mc': $('#center_mc').val(), //名称
                     'center_pr': $('#center_pr').val(),//联系人
@@ -306,7 +307,7 @@ $(function() {
         return false; //<---- move it here
     }
 
-
+    var Qj_Id = '';
     //表格数据展示
     $('#list_table').bootstrapTable({
         url: 'data.json',
@@ -325,6 +326,8 @@ $(function() {
         pageSize: 5,
         showPaginationSwitch: 'true', //是否显示 数据条数选择框
         onClickRow:function(row, $element, field){
+
+        Qj_Id = row.id;
         $('#myModal').modal('show')
         $.ajax({
                 cache: false,
