@@ -111,3 +111,17 @@ def SignIn(request):
                     return HttpResponse('{"status":"fail"}', content_type='application/json')
             else:
                 return HttpResponse('{"status":"fail"}', content_type='application/json')
+
+
+
+def Logout(request):
+    """
+    用户登出
+    """
+    if request.is_ajax:
+        if request.method == 'POST':
+            l_close = request.POST.get('logout','')
+            if l_close == 'abc':
+
+                logout(request)
+                return HttpResponse('{"status":"success"}', content_type='application/json')

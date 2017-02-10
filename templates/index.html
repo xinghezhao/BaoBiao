@@ -60,7 +60,7 @@
                                 <li><a href="help.html" target="_blank">帮助</a>
                                 </li>
                                 <li class="divider"></li>
-                                <li><a href="{% url 'login' %}">安全退出</a>
+                                <li><a id = 'l_close' href="">安全退出</a>
                                 </li>
                             </ul>
                         </div>
@@ -352,7 +352,27 @@ $(function() {
 
 
 
+     $('#l_close').click(function(){
+             $.ajax({
+                 cache: false,
+                 type: "POST",
+                 url:{% url 'logout' %},
+                 data: {
+                        'logout': 'abc' //退出
 
+                        },
+                 async:true,
+                beforeSend:function(xhr, settings){
+                    xhr.setRequestHeader("X-CSRFToken", "{{ csrf_token }}");
+                },
+                success: function(data){
+                    if(data.status == 'success') {
+                        window.location.href = "/login";
+                    }
+                }
+            });
+             return false; //<---- move it here
+     });
 
 
 });

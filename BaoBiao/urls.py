@@ -16,7 +16,7 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 
-from one.views import to_index, to_login, to_message, center_detail,SignIn
+from one.views import to_index, to_login, to_message, center_detail,SignIn,Logout
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -25,5 +25,6 @@ urlpatterns = [
     url(r'^center_detail/$', center_detail, name='center_detail'),
     url(r'^login/$', to_login, name='login'),
     url(r'^signin/$', SignIn, name='signin'),
+    url(r'^logout/$', Logout, name='logout'),
 ]
 
