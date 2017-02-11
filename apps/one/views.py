@@ -31,6 +31,14 @@ def to_index(request):
 
             user_message = UserMessage()
 
+            if request.user.is_authenticated():
+                request_creator = request.user
+
+                print(request_creator)
+            else:
+                pass
+
+            user_message.creator = request_creator
             user_message.center_number = center_number
             user_message.center_mc = center_mc
             user_message.center_pr = center_pr
