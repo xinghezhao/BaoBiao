@@ -26,7 +26,29 @@ def to_index(request):
 
             if not id.strip()=='':
 
-                UserMessage.objects.get(id=id).delete()
+                Asingle = UserMessage.objects.get(id=id)
+                if not center_number == Asingle.center_number:
+                    Asingle.center_number = center_number
+                    print(Asingle.center_number)
+                    Asingle.save()
+                if not center_mc == Asingle.center_mc:
+                    Asingle.center_mc = center_mc
+                    print(Asingle.center_mc)
+                    Asingle.save()
+                if not center_pr == Asingle.center_pr:
+                    Asingle.center_pr = center_pr
+                    Asingle.save()
+                if not center_mobile == Asingle.center_mobile:
+                    Asingle.center_mobile = center_mobile
+                    Asingle.save()
+                if not sscx_select == Asingle.address:
+                    Asingle.address = sscx_select
+                    Asingle.save()
+
+                if not start_time == Asingle.start_time:
+                    Asingle.start_time = start_time
+                    Asingle.save()
+                return render(request, 'index.html', {})
 
 
             user_message = UserMessage()
