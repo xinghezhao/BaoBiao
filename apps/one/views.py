@@ -26,6 +26,14 @@ def to_index(request):
 
             if not id.strip()=='':
 
+                if request.user.is_authenticated():
+                    request_modify = request.user
+                    print(request_modify)
+
+                else:
+                    pass
+
+
                 Asingle = UserMessage.objects.get(id=id)
                 if not center_number == Asingle.center_number:
                     Asingle.center_number = center_number
@@ -44,6 +52,12 @@ def to_index(request):
                 if not sscx_select == Asingle.address:
                     Asingle.address = sscx_select
                     Asingle.save()
+                if not request_modify == Asingle.creator:
+                    print(request_modify)
+                    print(Asingle.modify_person)
+                    Asingle.modify_person = str(request_modify)
+                    Asingle.save()
+                    print(32)
 
                 if not start_time == Asingle.start_time:
                     Asingle.start_time = start_time
@@ -96,6 +110,7 @@ def to_message(request):
                     'model_phone': msg.center_mobile,
                     'model_address':msg.address,
                     'model_creater':msg.creator.username,
+                    'model_pchange':msg.modify_person,
                     'model_time':msg.start_time.strftime('%Y-%m-%d %H:%M:%S')
                 }
                 data_list.append(item)
