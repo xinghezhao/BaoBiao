@@ -285,6 +285,10 @@ $(function() {
                 xhr.setRequestHeader("X-CSRFToken", "{{ csrf_token }}");
             },
             success: function(data){
+                if(data.status == 'fail') {
+                    alert('请登录');
+                    window.location.href = "/login";
+                }
 
                 $('#list_table').bootstrapTable('load', data);
 

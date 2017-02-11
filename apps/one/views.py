@@ -79,6 +79,9 @@ def to_message(request):
 
         elif request.method == 'POST':
 
+            if not request.user.is_authenticated(): #判断用户是否登录
+                return HttpResponse('{"status":"fail"}', content_type='application/json')
+
             all_messages = UserMessage.objects.all()
 
 
