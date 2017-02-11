@@ -107,7 +107,7 @@
             <!-- 表单开始 -->
             <table id="list_table">
                 <thead>
-                    <button id = "toolbar" data-toggle="modal" data-target="#myModal" class="btn btn-default add_add" type="button" name="refresh" title="增加"><i class="glyphicon glyphicon-plus"></i></button>
+                    <button id = "toolbar" data-toggle="modal" data-target="#myModal" class="btn btn-default add_add" type="button" name="refresh" title="增加"><i id = 'toolbar1' class="glyphicon glyphicon-plus"></i></button>
                     <tr>
                         <th data-field="state" data-radio="true"></th>
                         <th data-field="id">ID</th>
@@ -224,7 +224,14 @@
 </body>
 <script>
 $(function() {
-
+    $('#toolbar1').click(function(){
+        $('#center_number').val('');
+        $('#center_mc').val('');
+        $('#center_pr').val('');
+        $('#center_mobile').val('');
+        $('#sscx_select').get(0).selectedIndex=0;
+        $('#start_time').val('');
+    });
 
     //提交增加事件
     $('#go_submit').click(function(){
