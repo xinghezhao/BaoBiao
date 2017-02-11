@@ -70,6 +70,9 @@
                     if (data.status == 'fail') {
                         alert('用户名或密码错误')
                     }
+                    if (data.status == 'fail1') {
+                        alert('用户名必填并且密码必须要五位以上')
+                    }
                     if(data.status == 'success') {
 
                         window.location.href = "/index";

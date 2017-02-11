@@ -3,7 +3,7 @@ import datetime
 from django.shortcuts import render
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponse #指定返回给用户的类型
-from itertools import zip_longest
+from .forms import LoginForm
 
 
 from .models import UserMessage
@@ -112,9 +112,12 @@ def to_login(request):
 def SignIn(request):
     if request.is_ajax:
         if request.method == 'POST':
-            user_name = request.POST.get('username','')
-            pass_word = request.POST.get('password','')
-
+            login_form = LoginForm(request.POST)
+            if login_form.is_valid():
+                user_name = request.POST.get('username','')
+                pass_word = request.POST.get('password','')
+            else:
+                return HttpResponse('{"status":"fail1"}', content_type='application/json')
             user = authenticate(username=user_name, password=pass_word)
             if user is not None:
                 if user.is_active:

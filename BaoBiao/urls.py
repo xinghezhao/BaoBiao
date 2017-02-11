@@ -24,6 +24,7 @@ urlpatterns = [
     url(r'^message/$', to_message, name='to_message'),
     url(r'^center_detail/$', center_detail, name='center_detail'),
     url(r'^$', to_login, name='login'),
+    url(r'^login/$', to_login, name='login'),
     url(r'^signin/$', SignIn, name='signin'),
     url(r'^logout/$', Logout, name='logout'),
 ]
