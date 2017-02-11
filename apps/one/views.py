@@ -57,11 +57,13 @@ def to_index(request):
                     print(Asingle.modify_person)
                     Asingle.modify_person = str(request_modify)
                     Asingle.save()
-                    print(32)
 
-                if not start_time == Asingle.start_time:
-                    Asingle.start_time = start_time
+                print(Asingle.change_time)
+                if not Asingle.change_time == start_time:
+
+                    Asingle.change_time = start_time
                     Asingle.save()
+
                 return render(request, 'index.html', {})
 
 
@@ -80,6 +82,7 @@ def to_index(request):
             user_message.center_pr = center_pr
             user_message.center_mobile = center_mobile
             user_message.address = sscx_select
+            user_message.change_time = start_time
             user_message.start_time = start_time
             user_message.save()
 
@@ -111,6 +114,7 @@ def to_message(request):
                     'model_address':msg.address,
                     'model_creater':msg.creator.username,
                     'model_pchange':msg.modify_person,
+                    'model_ctime': msg.change_time.strftime('%Y-%m-%d %H:%M:%S'),
                     'model_time':msg.start_time.strftime('%Y-%m-%d %H:%M:%S')
                 }
                 data_list.append(item)

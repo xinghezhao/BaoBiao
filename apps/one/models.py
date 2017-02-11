@@ -13,6 +13,7 @@ class UserMessage(models.Model):
     modify_person = models.CharField(max_length=10, default='', verbose_name=u'修改人')
     start_time = models.DateTimeField(null=True, verbose_name=u'开始时间')
     creator = models.ForeignKey(User, null=True, blank=True, verbose_name=u'创建人')
+    change_time = models.DateTimeField(null=True, verbose_name=u'修改时间')
     add_time = models.DateTimeField(auto_now_add=True, verbose_name=u'添加时间')
 
     class Meta:
