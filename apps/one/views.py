@@ -98,7 +98,6 @@ def to_message(request):
 
             if not request.user.is_authenticated(): #判断用户是否登录
                 return HttpResponse('{"status":"fail"}', content_type='application/json')
-
             all_messages = UserMessage.objects.all()
 
 
@@ -166,8 +165,13 @@ def SignIn(request):
             if user is not None:
                 if user.is_active:
                     login(request, user)
-
-                    return HttpResponse('{"status":"success"}', content_type='application/json')
+                    loginName = request.user
+                    item = {
+                        'status' : 'success',
+                        'status1':str(loginName)
+                    }
+                    #return HttpResponse('{"status":"success"}', content_type='application/json')
+                    return HttpResponse(json.dumps(item), content_type="application/json")
                 else:
                     return HttpResponse('{"status":"fail"}', content_type='application/json')
             else:

@@ -41,7 +41,7 @@
                             <span id = 'wjz_numbers'>在线管理系统</span>
                             <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                                 <span class="clear">
-                               <span class="block m-t-xs"><strong class="font-bold">admin</strong></span>
+                               <span class="block m-t-xs"><strong id = 'username123'  class="font-bold">admin</strong></span>
                                 <span class="text-muted text-xs block">超级管理员<b class="caret"></b></span>
                                 </span>
                             </a>
@@ -213,8 +213,7 @@
     <script src="{% static 'js/plugins/metisMenu/jquery.metisMenu.js' %}"></script>
     <script src="{% static 'js/plugins/slimscroll/jquery.slimscroll.min.js' %}"></script>
     <script src="{% static 'js/plugins/layer/layer.min.js' %}"></script>
-     <script src="{% static 'js/hplus.min.js' %}"></script>
-
+    <script src="{% static 'js/hplus.min.js' %}"></script>
     <script src="{% static 'js/laydate/laydate.js' %}"></script>
     <script src = "{% static 'js/my_write.js' %}"></script>
 
@@ -264,7 +263,6 @@ $(function() {
 
 
     window.onload=function() {  //当页面刷新执行事件
-
         $.ajax({
          cache: false,
          type: "POST",
@@ -286,6 +284,9 @@ $(function() {
                 if(data.status == 'fail') {
                     alert('请登录');
                     window.location.href = "/login";
+                }
+                if(data.status == 'success') {
+
                 }
 
                 $('#list_table').bootstrapTable('load', data);
