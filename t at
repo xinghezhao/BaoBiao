@@ -1,0 +1,137 @@
+[33mcommit 0ebeca07bc058a91192b33bc150ac751fb447726[m
+Author: xinghezhao <xinghezhao@163.com>
+Date:   Sun Feb 12 20:00:07 2017 +0800
+
+    能够在.js文件中，提交ajax，并且解决csrf问题。 本例是登录中实现的。
+
+[33mcommit 8cae368392388840108c633fe0957c1cc7673e68[m
+Author: xinghezhao <xinghezhao@163.com>
+Date:   Sun Feb 12 17:23:18 2017 +0800
+
+    能够在.js文件中，提交ajax，并且解决csrf问题。 本例是登录中实现的。
+
+[33mcommit ff16bbd512ad2705862ae607d9781b21f3733492[m
+Author: xinghezhao <xinghezhao@163.com>
+Date:   Sat Feb 11 23:16:54 2017 +0800
+
+    能够正确显示修改时间，需求基本都完成了。
+
+[33mcommit 0e3e0c91b2e95c9901caaa68338e3eb86a5b5fe1[m
+Author: xinghezhao <xinghezhao@163.com>
+Date:   Sat Feb 11 22:20:29 2017 +0800
+
+    能够正确显示更新人
+
+[33mcommit 0791e67a53e7c2932be79ddbf530a7e330400f30[m
+Author: xinghezhao <xinghezhao@163.com>
+Date:   Sat Feb 11 21:42:34 2017 +0800
+
+    能够判断用户在未登录的情况下，跳转到登录页面
+
+[33mcommit 9830fa73860c520c3970ac235eaa1967ab6063f8[m
+Author: xinghezhao <xinghezhao@163.com>
+Date:   Sat Feb 11 21:30:14 2017 +0800
+
+    能够在原有数据上不刷新更改。
+
+[33mcommit 0e924a9db461f035cb29ed6c3933d2e437177f0e[m
+Author: xinghezhao <xinghezhao@163.com>
+Date:   Sat Feb 11 15:13:30 2017 +0800
+
+    能够对用户名密码的格式进行验证。
+
+[33mcommit 3d0ee41f0a609e93ed2b80aeeb610fefe856eb27[m
+Author: xinghezhao <xinghezhao@163.com>
+Date:   Sat Feb 11 14:54:49 2017 +0800
+
+    能够清空增加按钮出现的值
+
+[33mcommit 1e3164d048ae1605d802c85b20af52a55c2950c8[m
+Author: xinghezhao <xinghezhao@163.com>
+Date:   Sat Feb 11 14:37:51 2017 +0800
+
+    能够实现运行出现登录页面
+
+[33mcommit 581d2b5fb979a9b222badfbbf0f74872da4ae9ac[m
+Author: xinghezhao <xinghezhao@163.com>
+Date:   Fri Feb 10 18:12:37 2017 +0800
+
+    能够添加创建人。
+
+[33mcommit b2008354b3f2ca6ce86102e7b35be0ac95aea19a[m
+Author: xinghezhao <xinghezhao@163.com>
+Date:   Fri Feb 10 16:50:50 2017 +0800
+
+    对表格数据能够完善，支持读，取，添加。
+
+[33mcommit 0a80f10dd1e5b23ba0a381b10cc8c8aab2efa96e[m
+Author: xinghezhao <xinghezhao@163.com>
+Date:   Fri Feb 10 16:13:10 2017 +0800
+
+    能够退出
+
+[33mcommit 840c614c0412e3be482bb8241a431e40b9bd68c6[m
+Author: xinghezhao <xinghezhao@163.com>
+Date:   Fri Feb 10 12:31:18 2017 +0800
+
+    用户能够登录
+
+[33mcommit 96a45b5061c846380c3bdbfdb9f999b0e811f828[m
+Author: xinghezhao <xinghezhao@163.com>
+Date:   Fri Feb 10 11:20:33 2017 +0800
+
+    数据能够返回前台表格
+
+[33mcommit dc6b90218f3ca55207ebb1e4359ac7e8577a3b54[m
+Author: xinghezhao <xinghezhao@163.com>
+Date:   Thu Feb 9 22:41:20 2017 +0800
+
+    能够返回给表格数据。
+
+[33mcommit b26cf6f967f1361847544bf79b6dfe08c2519325[m
+Author: xinghezhao <xinghezhao@163.com>
+Date:   Thu Feb 9 17:38:28 2017 +0800
+
+    完成了表格信息回填
+
+[33mcommit ea42482aa1c6ee93ee3d5d4680d88ac0ecdd5897[m
+Author: xinghezhao <xinghezhao@163.com>
+Date:   Thu Feb 9 16:55:27 2017 +0800
+
+    完成了表格信息回填
+
+[33mcommit a5ae7f1b3962683eee6f4be630c71aba16a42ccd[m
+Author: xinghezhao <xinghezhao@163.com>
+Date:   Thu Feb 9 14:38:11 2017 +0800
+
+    获取前台数据，对数据进行保存。
+
+[33mcommit 5c7b64c62071bb882b2dbe55e97b31640238e126[m
+Author: xinghezhao <xinghezhao@163.com>
+Date:   Thu Feb 9 10:14:47 2017 +0800
+
+    获取前台数据，对数据进行保存。
+
+[33mcommit 17101d6ec9d6ca3af68abab59e861689c72690ca[m
+Author: xinghezhao <xinghezhao@163.com>
+Date:   Thu Feb 9 00:33:40 2017 +0800
+
+    对表头进行了添加内容
+
+[33mcommit da9b226928e03e36607b5b0a455d87508262c474[m
+Author: xinghezhao <xinghezhao@163.com>
+Date:   Thu Feb 9 00:31:49 2017 +0800
+
+    对表头进行了添加内容
+
+[33mcommit c32ab7d9993574458bf169a8504b0df3ff4d5e5c[m
+Author: xinghezhao <xinghezhao@163.com>
+Date:   Thu Feb 9 00:28:19 2017 +0800
+
+    增加了登录页面
+
+[33mcommit cd01ab18334475364e7a57e4c1e87e05f797b0b2[m
+Author: xinghezhao <xinghezhao@163.com>
+Date:   Thu Feb 9 00:19:26 2017 +0800
+
+    Initial commit

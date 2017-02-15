@@ -40,14 +40,7 @@ $('document').ready(function(){
 					 alert('用户名必填并且密码必须要五位以上')
 				 }
 				 if(data.status == 'success') {
-
-					 USERNAME = data.status1;
-
-					 // $('#username123').css("background-color","yellow");
-	 				//  $('#username123').text(USERNAME);
 					 window.location.href = "/index";
-					 // $('#username123').css("background-color","yellow");
-					 // $('#username123').text(data.status1);
 				 }
 
 
@@ -56,11 +49,7 @@ $('document').ready(function(){
               xhr.setRequestHeader("X-CSRFToken", csrftoken);
             }
 		});
-
 	});
-	 $('#username123').css("background-color","yellow");
-	 $('#username123').text(USERNAME);
-	 //alert(USERNAME);
 
 
 

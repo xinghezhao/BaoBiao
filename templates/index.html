@@ -254,7 +254,6 @@ $(function() {
             },
             success: function(data){
 
-
             }
         });
         return false; //<---- move it here
@@ -281,16 +280,14 @@ $(function() {
                 xhr.setRequestHeader("X-CSRFToken", "{{ csrf_token }}");
             },
             success: function(data){
+                console.log(data)
                 if(data.status == 'fail') {
                     alert('请登录');
                     window.location.href = "/login";
                 }
-                if(data.status == 'success') {
 
-                }
-
-                $('#list_table').bootstrapTable('load', data);
-
+                $('#list_table').bootstrapTable('load', data.data_list);
+                $('#username123').text(data.loginName);
             }
         });
 

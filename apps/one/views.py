@@ -98,8 +98,10 @@ def to_message(request):
 
             if not request.user.is_authenticated(): #判断用户是否登录
                 return HttpResponse('{"status":"fail"}', content_type='application/json')
+            else:
+                loginName = str(request.user)
+                print(loginName)
             all_messages = UserMessage.objects.all()
-
 
             data_list = list()
             for msg in all_messages:
@@ -117,6 +119,11 @@ def to_message(request):
                     'model_time':msg.start_time.strftime('%Y-%m-%d %H:%M:%S')
                 }
                 data_list.append(item)
+
+        data_list = {
+            "data_list":data_list,
+            'loginName':loginName
+        }
 
         return HttpResponse(json.dumps(data_list), content_type="application/json")
 
@@ -165,13 +172,7 @@ def SignIn(request):
             if user is not None:
                 if user.is_active:
                     login(request, user)
-                    loginName = request.user
-                    item = {
-                        'status' : 'success',
-                        'status1':str(loginName)
-                    }
-                    #return HttpResponse('{"status":"success"}', content_type='application/json')
-                    return HttpResponse(json.dumps(item), content_type="application/json")
+                    return HttpResponse('{"status":"success"}', content_type='application/json')
                 else:
                     return HttpResponse('{"status":"fail"}', content_type='application/json')
             else:
