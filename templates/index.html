@@ -184,6 +184,14 @@
                                              <input style="height: 40px;"  type="text" id = 'start_time' name = 'start_time' class="form-control nav_time laydate-icon" placeholder="请选择开始时间">
                                         </div>
                                     </div>
+
+                                    <div class="form-group" id = 'center_modify_person_div'>
+                                        <label for="inputPassword" class="col-sm-2 control-label">修改人</label>
+                                        <div class="col-sm-10">
+                                            <input  disabled="true" type="text" id = 'center_modify_person' name = 'center_mobile' class="form-control"
+                                                   placeholder="请输入修改人">
+                                        </div>
+                                    </div>
                                 </form>
                             </div>
                             <div class="modal-footer">
@@ -228,12 +236,13 @@ $(function() {
         $('#center_mobile').val('');
         $('#sscx_select').get(0).selectedIndex=0;
         $('#start_time').val('');
+        $('#center_modify_person_div').css('display','none');
     });
 
     //提交增加事件
     $('#go_submit').click(function(){
         window.location.reload();  //刷新界面
-        $('#myModal').modal('hide')
+        $('#myModal').modal('hide');
         $.ajax({
              cache: false,
              type: "POST",
@@ -245,7 +254,8 @@ $(function() {
                     'center_pr': $('#center_pr').val(),//联系人
                     'center_mobile': $('#center_mobile').val(),//电话
                     'sscx_select': $('#sscx_select').val(),//城市
-                    'start_time': $('#start_time').val()//时间
+                    'start_time': $('#start_time').val(),//时间
+                    'center_modify_person': $('#center_modify_person').val() //修改人
 
                     },
              async:true,
@@ -314,7 +324,7 @@ $(function() {
         onClickRow:function(row, $element, field){
 
         Qj_Id = row.id;
-        $('#myModal').modal('show')
+        $('#myModal').modal('show');
         $.ajax({
                 cache: false,
                 type: "POST",
@@ -330,7 +340,8 @@ $(function() {
                     $('#center_pr').val(data.model_name);
                     $('#center_mobile').val(data.model_phone);
                     $('#sscx_select').val(data.model_address);
-                    $('#start_time').val(data.model_time)
+                    $('#start_time').val(data.model_time);
+                    $('#center_modify_person').val(data.modify_person);
                 }
             });
 

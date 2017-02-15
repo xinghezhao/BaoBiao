@@ -23,6 +23,7 @@ def to_index(request):
             sscx_select = request.POST.get('sscx_select', '')
             start_time = request.POST.get('start_time', '')
             start_time = datetime.datetime.strptime(start_time, '%Y-%m-%d %H:%M:%S')
+            center_modify_person = request.POST.get('center_modify_person','')
 
             if not id.strip()=='':
 
@@ -35,7 +36,10 @@ def to_index(request):
 
 
                 Asingle = UserMessage.objects.get(id=id)
-                if not center_number == Asingle.center_number:
+
+                print(type(center_number)) #注意字符串类型转换
+                print(type(Asingle.center_number)) #注意字符串类型转换  从数据库获取到的是int()类型
+                if not int(center_number) == Asingle.center_number:
                     Asingle.center_number = center_number
                     print(Asingle.center_number)
                     Asingle.save()
@@ -52,9 +56,9 @@ def to_index(request):
                 if not sscx_select == Asingle.address:
                     Asingle.address = sscx_select
                     Asingle.save()
-                if not request_modify == Asingle.creator:
+                if not request_modify == center_modify_person:
                     print(request_modify)
-                    print(Asingle.modify_person)
+                    print(center_modify_person)
                     Asingle.modify_person = str(request_modify)
                     Asingle.save()
 
@@ -136,7 +140,6 @@ def center_detail(request):
             ID = request.POST.get('id', '')
             msg = UserMessage.objects.get(id = ID)
 
-
             item = {
                 'id': msg.id,
                 'model_number': msg.center_number,
@@ -144,6 +147,7 @@ def center_detail(request):
                 'model_name': msg.center_pr,
                 'model_phone': msg.center_mobile,
                 'model_address': msg.address,
+                'modify_person': msg.modify_person,
                 'model_time': msg.start_time.strftime('%Y-%m-%d %H:%M:%S')
             }
 
@@ -172,6 +176,7 @@ def SignIn(request):
             if user is not None:
                 if user.is_active:
                     login(request, user)
+
                     return HttpResponse('{"status":"success"}', content_type='application/json')
                 else:
                     return HttpResponse('{"status":"fail"}', content_type='application/json')
