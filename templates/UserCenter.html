@@ -77,21 +77,21 @@
                         </a>
                     <div  class="bs-example bs-example-form" role="form" id = "nav_search">
                         <div class="input-group input-group-sm" id = "nav_search" style="margin-top: 15px;">
-                            <span class="input-group-addon">开始时间</span>
+                            <span class="input-group-addon"></span>
 
                             <input style="height: 40px;"  type="text" id = 'start_time1' class="form-control nav_time laydate-icon" placeholder="请选择开始时间">
 
                             <span class="input-group-addon"></span>
                             <input style="height: 40px;" type="text" id = 'end_time'  class="form-control nav_time laydate-icon" placeholder="请选择结束时间">
 
-                            <span  class="input-group-addon"></span>
+                            <span  class="input-group-addon">关键词</span>
                             <input id = 'tjcx_keyword' style="height: 40px;" type="text" class="form-control" placeholder="请输入关键词">
                             <span class="input-group-addon">
                                 <select id = 'tjcx_select' class="sscx_select">
-                                    <option value="all_messages"></option>
-                                    <option value ="defraud_messages"></option>
-                                    <option value ="safety_messages"></option>
-                                    <option value="rubblish_messages"></option>
+                                    <option value="all_messages">全部类型</option>
+                                    <option value ="defraud_messages">诈骗短信</option>
+                                    <option value ="safety_messages">安全短信</option>
+                                    <option value="rubblish_messages">垃圾短信</option>
                                 </select>
                             </span>
                             <span class="input-group-addon">省市</span>
@@ -117,15 +117,9 @@
                     <tr>
                         <th data-field="state" data-radio="true"></th>
                         <th data-field="id">ID</th>
-                        <th data-field="model_number">中心编号</th>
-                        <th data-field="model_cname">中心名称</th>
-                        <th data-field="model_name">联系人姓名</th>
-                        <th data-field="model_phone">联系电话</th>
-                        <th data-field="model_address">所在地点</th>
-                        <th data-field="model_creater">创建人</th>
-                        <th data-field="model_pchange">更新人</th>
-                        <th data-field="model_time">创建时间</th>
-                        <th data-field="model_ctime">修改时间</th>
+                        <th data-field="model_number">用户名</th>
+                        <th data-field="model_cname">角色</th>
+                        <th data-field="model_name">组别</th>
                     </tr>
                 </thead>
             </table>
@@ -146,41 +140,27 @@
                             <div class="modal-body">
                                 <form class="form-horizontal" role="form">
                                     <div class="form-group">
-                                        <label class="col-sm-2 control-label">中心编号</label>
+                                        <label for="inputPassword"  class="col-sm-2 control-label">用户名</label>
                                         <div class="col-sm-10">
-                                            <input type="text" id = 'center_number' name = 'center_number' class="form-control"
-                                                   placeholder="请输入中心编号">
+                                            <input type="text" id = 'center_name' name = 'center_name1' class="form-control"
+                                                   placeholder="请输入用户名">
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="inputPassword"  class="col-sm-2 control-label">中心名称</label>
+                                        <label for="inputPassword" class="col-sm-2 control-label">密码</label>
                                         <div class="col-sm-10">
-                                            <input type="text" id = 'center_mc' name = 'center_mc' class="form-control"
-                                                   placeholder="请输入中心名称">
+                                            <input type="text" id = 'center_password1' name = 'center_password' class="form-control"
+                                                   placeholder="请输入密码">
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="inputPassword" class="col-sm-2 control-label">联系人</label>
-                                        <div class="col-sm-10">
-                                            <input type="text" id = 'center_pr' name = 'center_pr' class="form-control"
-                                                   placeholder="请输入联系人">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="inputPassword" class="col-sm-2 control-label">电话</label>
-                                        <div class="col-sm-10">
-                                            <input type="text" id = 'center_mobile' name = 'center_mobile' class="form-control"
-                                                   placeholder="请输入联系电话">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="inputPassword" class="col-sm-2 control-label">所在地址</label>
+                                        <label for="inputPassword" class="col-sm-2 control-label">角色</label>
                                         <div class="col-sm-10">
                                             <select class="sscx_select" id = "sscx_select" >
-                                                <option value="all_messages">所在地址</option>
-                                                <option value ="北京">北京</option>
-                                                <option value ="天津">天津</option>
-                                                <option value="上海">上海</option>
+                                                <option value="选择角色">选择角色</option>
+                                                <option value ="编辑">编辑</option>
+                                                <option value ="浏览">浏览</option>
+                                                <option value="超级用户">超级用户</option>
                                             </select>
                                         </div>
                                     </div>
@@ -190,21 +170,13 @@
                                              <input style="height: 40px;"  type="text" id = 'start_time' name = 'start_time' class="form-control nav_time laydate-icon" placeholder="请选择开始时间">
                                         </div>
                                     </div>
-
-                                    <div class="form-group" id = 'center_modify_person_div'>
-                                        <label for="inputPassword" class="col-sm-2 control-label">修改人</label>
-                                        <div class="col-sm-10">
-                                            <input  disabled="true" type="text" id = 'center_modify_person' name = 'center_mobile' class="form-control"
-                                                   placeholder="请输入修改人">
-                                        </div>
-                                    </div>
                                 </form>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-default"
                                         data-dismiss="modal">关闭
                                 </button>
-                                <button id = 'go_submit' type="button" class="btn btn-primary" data-dismiss="modal">
+                                <button id = 'go_submit2' type="button" class="btn btn-primary" data-dismiss="modal">
                                     提交
                                 </button>
                             </div>
@@ -241,27 +213,22 @@ $(function() {
         $('#center_pr').val('');
         $('#center_mobile').val('');
         $('#sscx_select').get(0).selectedIndex=0;
-        $('#start_time').val('');
-        $('#center_modify_person_div').css('display','none');
     });
 
     //提交增加事件
-    $('#go_submit').click(function(){
+    $('#go_submit2').click(function(){
+        alert($('#center_name').val());
+        alert($('#center_password').val());
         window.location.reload();  //刷新界面
         $('#myModal').modal('hide');
         $.ajax({
              cache: false,
              type: "POST",
-             url:{% url 'index' %},
+             url:{% url 'user_center' %},
              data: {
-                    'id':Qj_Id, //每行id
-                    'center_number': $('#center_number').val(), //编号
-                    'center_mc': $('#center_mc').val(), //名称
-                    'center_pr': $('#center_pr').val(),//联系人
-                    'center_mobile': $('#center_mobile').val(),//电话
-                    'sscx_select': $('#sscx_select').val(),//城市
-                    'start_time': $('#start_time').val(),//时间
-                    'center_modify_person': $('#center_modify_person').val() //修改人
+                    'center_name1': $('#center_name').val(), //用户名
+                    'center_password1': $('#center_password').val(), //密码
+                    'sscx_select1': $('#sscx_select').val()//权限
                     },
              async:true,
             beforeSend:function(xhr, settings){
@@ -273,8 +240,6 @@ $(function() {
         });
         return false; //<---- move it here
     });
-
-
 
     window.onload=function() {  //当页面刷新执行事件
         $.ajax({
@@ -353,31 +318,6 @@ $(function() {
             return false; //<---- move it here
         }
     });
-
-
-
-
-     $('#l_close').click(function(){
-             $.ajax({
-                 cache: false,
-                 type: "POST",
-                 url:{% url 'logout' %},
-                 data: {
-                        'logout': 'abc' //退出
-
-                        },
-                 async:true,
-                beforeSend:function(xhr, settings){
-                    xhr.setRequestHeader("X-CSRFToken", "{{ csrf_token }}");
-                },
-                success: function(data){
-                    if(data.status == 'success') {
-                        window.location.href = "/login";
-                    }
-                }
-            });
-             return false; //<---- move it here
-     });
 
 
 });

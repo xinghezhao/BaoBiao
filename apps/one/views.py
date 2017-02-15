@@ -196,3 +196,21 @@ def Logout(request):
 
                 logout(request)
                 return HttpResponse('{"status":"success"}', content_type='application/json')
+
+
+
+def UserCenter(request):
+    """
+    用户中心
+    """
+    if request.is_ajax():
+        if request.method == 'GET':
+            pass
+
+    elif request.method == 'POST':
+        sscx_select1 = request.POST.get('sscx_select1', '')
+        center_number1 = request.POST.get('center_name1', '')
+        center_mc1 = request.POST.get('center_password1', '')
+
+
+    return render(request, 'UserCenter.html',{})
